@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../assets/logo.jpg";
+import logo from "../../assets/logo.png";
 
 const Header = () => {
+  const [active, setActive] = useState(false);
+  const handleMode = (e) => {
+    setActive(!active);
+  };
+  console.log(active);
   return (
     <div>
       <div className="navbar bg-slate-800 text-white px-10 md:px-16">
@@ -72,7 +77,7 @@ const Header = () => {
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-xl">
-            <img src={logo} alt="Tech-web" className="h-6 mr-2" /> Tech Web
+            <img src={logo} alt="Tech-web" className="h-10 mr-2" /> Tech Web
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -119,6 +124,20 @@ const Header = () => {
               </NavLink>
             </li>
           </ul>
+        </div>
+        <div className="light-dark-mode">
+          <div className="form-control">
+            <label className="label cursor-pointer">
+              <input
+                type="checkbox"
+                className="toggle toggle-accent"
+                onClick={handleMode}
+              />
+              <span className="label-text  text-white ml-2 ">
+                {active ? "Dark " : "Light "}
+              </span>
+            </label>
+          </div>
         </div>
         <div className="navbar-end">
           <Link to="/login">
