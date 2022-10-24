@@ -8,7 +8,7 @@ const CourseTitle = ({ course }) => {
       <div className="md:flex md:space-x-6 mx-auto w-4/5">
         <img
           alt=""
-          className=" h-auto w-96 mb-4 bg-center rounded-sm bg-gray-500"
+          className=" h-auto w-96 mb-4 bg-center rounded-lg bg-gray-500 ease-linear duration-200 hover:translate-x-3 hover:md:scale-110 hover:ease-linear"
           src={img}
         />
         <div className="flex flex-col justify-center">

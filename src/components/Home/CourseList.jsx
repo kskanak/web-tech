@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import CourseTitle from "./CourseTitle";
 
 const CourseList = () => {
@@ -19,7 +20,7 @@ const CourseList = () => {
             <h3 className="text-2xl font-bold leading-none sm:text-5xl">
               Our Curriculams
             </h3>
-            <p className="max-w-2xl text-gray-400">
+            <p className="w-4/5 mx-auto text-gray-400">
               An effective curriculum provides teachers, students, school
               leaders and community stakeholders with a measurable plan and
               structure for delivering a quality education. The curriculum
@@ -31,6 +32,13 @@ const CourseList = () => {
             {courses.map((course) => (
               <CourseTitle key={course.id} course={course}></CourseTitle>
             ))}
+          </div>
+          <div className="course-detailsBtn my-3">
+            <Link to="/curriculam">
+              <button className="btn btn-success hover:bg-sky-300">
+                See Course Details
+              </button>
+            </Link>
           </div>
         </div>
       </section>
