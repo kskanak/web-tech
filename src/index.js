@@ -12,7 +12,7 @@ root.render(
   <React.StrictMode>
     <AuthProvider>
       <App />
-      <ToastContainer />
+      <ToastContainer position="top-center" autoClose={3000} />
     </AuthProvider>
   </React.StrictMode>
 );

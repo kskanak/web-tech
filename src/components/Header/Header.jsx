@@ -90,8 +90,9 @@ const Header = () => {
               </div>
             </ul>
           </div>
-          <Link to="/" className="btn btn-ghost normal-case text-xl">
-            <img src={logo} alt="Tech-web" className="h-10 mr-2" /> Tech Web
+          <Link to="/" className="btn btn-ghost normal-case text-lg md:text-xl">
+            <img src={logo} alt="Tech-web" className="h-8 md:h-10 mr-2" /> Tech
+            Web
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
