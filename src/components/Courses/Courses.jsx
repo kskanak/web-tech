@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import CourseDetails from "./CourseDetails";
 import ListCatagory from "./ListCatagory";
+import { FaSmile } from "react-icons/fa";
 
 const Courses = () => {
   const catagories = useLoaderData();
@@ -12,7 +13,7 @@ const Courses = () => {
     setId(id);
   };
   useEffect(() => {
-    fetch("http://localhost:5000/catagorydetails")
+    fetch("https://web-tech-server-side.vercel.app/catagorydetails") //    http://localhost:5000/catagorydetails
       .then((res) => res.json())
       .then((data) => setCourses(data))
       .catch((error) => console.log(error));
@@ -20,11 +21,11 @@ const Courses = () => {
   const courseDetails = courses.find((c) => c.id === id);
   console.log(courseDetails);
   return (
-    <div className="courses bg-slate-800">
+    <div className="courses bg-slate-800 py-10">
       <h2 className="text-4xl font-semibold text-white py-6 underline">
         Curruculam
       </h2>
-      <div className="curricula-body-container md:grid md:grid-cols-4 md:w-4/5 mx-auto md:h-screen ">
+      <div className="curricula-body-container md:grid md:grid-cols-4 md:w-4/5 mx-auto ">
         <div className="course-list-container border-2 bg-slate-900 flex flex-col justify-center items-center w-full mt-5 mb-10 md:mb-0 md:mt-0 py-10">
           <h2 className="text-success text-3xl font-semibold flex justify-center mb-5">
             Course-List
@@ -39,13 +40,20 @@ const Courses = () => {
             ))}
           </div>
         </div>
-        <div className="course-details col-span-3 border-2 flex justify-center items-center">
+        <div className="course-details col-span-3 border-2 flex justify-center items-center py-10 px-5 md:px-0">
           {courseDetails ? (
             <CourseDetails courseDetails={courseDetails}></CourseDetails>
           ) : (
-            <h2 className="text-white">
-              Click the course to see details infomation
-            </h2>
+            <div className="text-white flex-col md:flex items-center">
+              Click the course to see details infomation{" "}
+              <span className="emoji flex justify-center">
+                <FaSmile className="m-2 text-pink-500" />
+                <FaSmile className="m-2 text-pink-500" />
+                <FaSmile className="m-2 text-pink-500" />
+                <FaSmile className="m-2 text-pink-500" />
+                <FaSmile className="m-2 text-pink-500" />
+              </span>
+            </div>
           )}
         </div>
       </div>

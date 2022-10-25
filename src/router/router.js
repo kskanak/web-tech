@@ -1,7 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import Blog from "../components/Blog/Blog";
+import CheckoutPages from "../components/Courses/CheckoutPages";
 import CourseDetails from "../components/Courses/CourseDetails";
 import Courses from "../components/Courses/Courses";
+import Premiumdetails from "../components/Courses/Premiumdetails";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import Faq1 from "../components/Faq1/Faq1";
 
@@ -27,7 +29,7 @@ export const router = createBrowserRouter([
       {
         path: "/curriculam",
         loader: () =>
-          fetch("https://web-tech-server-side.vercel.app/catagories"),
+          fetch("https://web-tech-server-side.vercel.app/catagories"), //    http://localhost:5000/catagories
         element: <Courses></Courses>,
       },
       {
@@ -45,6 +47,15 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/checkOutPage/:id",
+        loader: async ({ params }) => {
+          return fetch(
+            `https://web-tech-server-side.vercel.app/catagorydetails/${params.id}` ///2   http://localhost:5000/catagorydetails/${params.id}
+          );
+        },
+        element: <CheckoutPages></CheckoutPages>,
       },
     ],
   },

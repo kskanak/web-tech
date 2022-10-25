@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CourseDetails = ({ courseDetails }) => {
   const { id, img, title, about, details, list } = courseDetails;
@@ -6,6 +7,17 @@ const CourseDetails = ({ courseDetails }) => {
   return (
     <div>
       <div className="max-w-lg p-4 shadow-md bg-gray-900 text-gray-100">
+        <div className="flex justify-between pb-4 border-bottom">
+          <div className="flex items-center">
+            <a
+              rel="noopener noreferrer"
+              href="#"
+              className="mb-0 capitalize dark:text-gray-100"
+            >
+              Photography
+            </a>
+          </div>
+        </div>
         <div className="space-y-4">
           <div className="space-y-2">
             <img
@@ -15,11 +27,13 @@ const CourseDetails = ({ courseDetails }) => {
             />
           </div>
           <div className="space-y-2">
-            <a rel="noopener noreferrer" href="#" className="block">
-              <h3 className="text-xl font-semibold text-violet-400">{title}</h3>
-            </a>
             <p className="leading-snug text-gray-400">{about}</p>
           </div>
+          <Link to={`/checkOutPage/${id}`}>
+            <button className="btn btn-outline btn-accent my-10">
+              Get Premium Access
+            </button>
+          </Link>
         </div>
       </div>
     </div>
