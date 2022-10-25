@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import CourseDetails from "./CourseDetails";
 import ListCatagory from "./ListCatagory";
 
 const Courses = () => {
   const catagories = useLoaderData();
-  console.log(catagories);
+  const [id, setId] = useState("");
+  const [courses, setCourses] = useState([]);
+
   const handleClickDetails = (id) => {
-    console.log(id);
+    setId(id);
   };
+  useEffect(() => {
+    fetch("http://localhost:5000/catagorydetails")
+      .then((res) => res.json())
+      .then((data) => setCourses(data))
+      .catch((error) => console.log(error));
+  }, []);
+  const courseDetails = courses.find((c) => c.id === id);
+  console.log(courseDetails);
   return (
     <div className="courses bg-slate-800">
       <h2 className="text-4xl font-semibold text-white py-6 underline">
@@ -29,8 +39,14 @@ const Courses = () => {
             ))}
           </div>
         </div>
-        <div className="course-details col-span-3 border-2">
-          <CourseDetails></CourseDetails>
+        <div className="course-details col-span-3 border-2 flex justify-center items-center">
+          {courseDetails ? (
+            <CourseDetails courseDetails={courseDetails}></CourseDetails>
+          ) : (
+            <h2 className="text-white">
+              Click the course to see details infomation
+            </h2>
+          )}
         </div>
       </div>
     </div>
