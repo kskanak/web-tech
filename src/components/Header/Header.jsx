@@ -37,7 +37,7 @@ const Header = () => {
                 <NavLink
                   to="/home"
                   className={({ isActive }) =>
-                    isActive ? "text-red-700" : undefined
+                    isActive ? "text-info" : undefined
                   }
                 >
                   Home
@@ -47,7 +47,7 @@ const Header = () => {
                 <NavLink
                   to="/curriculam"
                   className={({ isActive }) =>
-                    isActive ? "text-red-700" : undefined
+                    isActive ? "text-info" : undefined
                   }
                 >
                   Curriculam
@@ -57,7 +57,7 @@ const Header = () => {
                 <NavLink
                   to="/faq"
                   className={({ isActive }) =>
-                    isActive ? "text-red-700" : undefined
+                    isActive ? "text-info" : undefined
                   }
                 >
                   FAQ
@@ -68,12 +68,26 @@ const Header = () => {
                 <NavLink
                   to="/blog"
                   className={({ isActive }) =>
-                    isActive ? "text-red-700" : undefined
+                    isActive ? "text-info" : undefined
                   }
                 >
                   Blog
                 </NavLink>
               </li>
+              <div className="light-dark-mode">
+                <div className="form-control">
+                  <label className="label cursor-pointer">
+                    <input
+                      type="checkbox"
+                      className="toggle toggle-accent"
+                      onClick={handleMode}
+                    />
+                    <span className="label-text  text-white ml-2 ">
+                      {active ? "Dark " : "Light "}
+                    </span>
+                  </label>
+                </div>
+              </div>
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-xl">
@@ -86,7 +100,7 @@ const Header = () => {
               <NavLink
                 to="/home"
                 className={({ isActive }) =>
-                  isActive ? "text-red-700" : undefined
+                  isActive ? "text-success" : undefined
                 }
               >
                 Home
@@ -96,7 +110,7 @@ const Header = () => {
               <NavLink
                 to="/curriculam"
                 className={({ isActive }) =>
-                  isActive ? "text-red-700" : undefined
+                  isActive ? "text-success" : undefined
                 }
               >
                 Curriculam
@@ -106,7 +120,7 @@ const Header = () => {
               <NavLink
                 to="/faq"
                 className={({ isActive }) =>
-                  isActive ? "text-red-700" : undefined
+                  isActive ? "text-success" : undefined
                 }
               >
                 FAQ
@@ -117,7 +131,7 @@ const Header = () => {
               <NavLink
                 to="/blog"
                 className={({ isActive }) =>
-                  isActive ? "text-red-700" : undefined
+                  isActive ? "text-success" : undefined
                 }
               >
                 Blog
@@ -125,7 +139,7 @@ const Header = () => {
             </li>
           </ul>
         </div>
-        <div className="light-dark-mode">
+        <div className="light-dark-mode hidden md:block">
           <div className="form-control">
             <label className="label cursor-pointer">
               <input

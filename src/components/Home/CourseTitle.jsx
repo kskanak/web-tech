@@ -2,7 +2,7 @@ import React from "react";
 
 const CourseTitle = ({ course }) => {
   const { id, img, title } = course;
-  console.log(course);
+
   return (
     <div>
       <div className="md:flex md:space-x-6 mx-auto w-4/5">

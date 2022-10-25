@@ -6,7 +6,7 @@ import Faq1 from "../components/Faq1/Faq1";
 
 import Home from "../components/Home/Home";
 import Login from "../components/Login/Login";
-import Register from "../components/Reginster/Register";
+import Register from "../components/Register/Register";
 import Main from "../layout/Main";
 
 export const router = createBrowserRouter([
@@ -25,6 +25,8 @@ export const router = createBrowserRouter([
 
       {
         path: "/curriculam",
+        loader: () =>
+          fetch("https://web-tech-server-side.vercel.app/catagories"),
         element: <Courses></Courses>,
       },
       {
