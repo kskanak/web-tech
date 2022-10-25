@@ -154,6 +154,11 @@ const Header = () => {
           </div>
         </div>
         <div className="navbar-end">
+          <Link to="/register">
+            <button className="btn btn-outline btn-accent btn-sm mx-2">
+              Registration
+            </button>
+          </Link>
           <Link to="/login">
             <button className="btn btn-outline btn-accent btn-sm">Login</button>
           </Link>
