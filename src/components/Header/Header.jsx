@@ -71,7 +71,7 @@ const Header = () => {
                     isActive ? "text-info" : undefined
                   }
                 >
-                  FAQ
+                  Faq
                 </NavLink>
               </li>
 
@@ -135,7 +135,7 @@ const Header = () => {
                   isActive ? "text-success" : undefined
                 }
               >
-                FAQ
+                Faq
               </NavLink>
             </li>
 

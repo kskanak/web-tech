@@ -15,14 +15,17 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const auth = getAuth(app);
   const [user, setUser] = useState({});
+  const [loader, setLoader] = useState(true);
 
   // sign up
   const handleSignUp = (email, password) => {
+    setLoader(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   //login
   const handleLogin = (email, password) => {
+    setLoader(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
@@ -34,22 +37,26 @@ const AuthProvider = ({ children }) => {
   // sign out implement
 
   const handleLogout = () => {
+    setLoader(true);
     return signOut(auth);
   };
   // google sign in
 
   const handleGooglesignIn = (googleProvider) => {
+    setLoader(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   // github sign in
   const handleGithubsignIn = (githubProvider) => {
+    setLoader(true);
     return signInWithPopup(auth, githubProvider);
   };
   // onauth change implement
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
       setUser(loggedUser);
+      setLoader(false);
     });
     return () => {
       unsubscribe();
@@ -63,6 +70,7 @@ const AuthProvider = ({ children }) => {
     handleLogout,
     handleGooglesignIn,
     handleGithubsignIn,
+    loader,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
