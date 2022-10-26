@@ -1,10 +1,12 @@
+import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../router/AuthProvider";
 
 const Login = () => {
-  const { handleLogin } = useContext(AuthContext);
+  const { user, handleLogin, handleGooglesignIn } = useContext(AuthContext);
+  const googleProvider = new GoogleAuthProvider();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,11 +19,17 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         toast.info("logged into your account");
+        form.reset();
         console.log(user);
       })
       .catch((error) => {
         toast.error(error.message);
+        form.reset();
       });
+  };
+  //   handleGoogle
+  const handleGoogleclick = () => {
+    handleGooglesignIn(googleProvider);
   };
 
   return (
@@ -81,7 +89,11 @@ const Login = () => {
           <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
         </div>
         <div className="flex justify-center space-x-4">
-          <button aria-label="Log in with Google" className="p-3 rounded-sm">
+          <button
+            aria-label="Log in with Google"
+            className="p-3 rounded-sm"
+            onClick={handleGoogleclick}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 32 32"

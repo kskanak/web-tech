@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 import logo from "../../assets/logo.png";
+import { AuthContext } from "../../router/AuthProvider";
 
 const Header = () => {
+  const { user, handleLogout } = useContext(AuthContext);
   const [active, setActive] = useState(false);
   const handleMode = (e) => {
     setActive(!active);
   };
-
+  const handleSignout = () => {
+    handleLogout()
+      .then((result) => {
+        toast.info("Sign out successfull");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
   return (
     <div>
       <div className="navbar bg-gray-900 text-white px-10 md:px-16">
@@ -155,14 +166,36 @@ const Header = () => {
           </div>
         </div>
         <div className="navbar-end">
-          <Link to="/register">
-            <button className="btn btn-outline btn-accent btn-sm mx-2">
-              Registration
+          <div className="userInfo text-white">
+            {user && (
+              <img
+                src={user.photoURL}
+                title={user.displayName}
+                className="h-8 w-8 rounded-full"
+              />
+            )}
+          </div>
+          {user && user?.uid ? (
+            <button
+              className="btn btn-outline btn-accent btn-sm mx-2"
+              onClick={handleSignout}
+            >
+              LogOut
             </button>
-          </Link>
-          <Link to="/login">
-            <button className="btn btn-outline btn-accent btn-sm">Login</button>
-          </Link>
+          ) : (
+            <div className="login-regis-btn">
+              <Link to="/register">
+                <button className="btn btn-outline btn-accent btn-sm mx-2">
+                  Registration
+                </button>
+              </Link>
+              <Link to="/login">
+                <button className="btn btn-outline btn-accent btn-sm">
+                  Login
+                </button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../../router/AuthProvider";
 
 const Register = () => {
-  const { user, handleSignUp } = useContext(AuthContext);
+  const { user, handleSignUp, updateUserProfile } = useContext(AuthContext);
   const [error, setError] = useState("");
 
   const [password, setPassword] = useState("");
@@ -31,14 +31,15 @@ const Register = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
-    const userName = form.username.value;
-    const photoURl = form.photoURL.value;
+    const displayName = form.username.value;
+    const photoURL = form.photoURL.value;
     const email = form.email.value;
 
     // registration
     handleSignUp(email, password)
       .then((result) => {
         const user = result.user;
+        setUserInfo(photoURL, displayName);
         toast.success("Account created Successfully");
         form.reset();
       })
@@ -46,6 +47,14 @@ const Register = () => {
         toast.error(error.message);
         form.reset();
       });
+  };
+
+  const setUserInfo = (photoURL, displayName) => {
+    const profile = {
+      photoURL: photoURL,
+      displayName: displayName,
+    };
+    updateUserProfile(profile);
   };
 
   return (
@@ -133,13 +142,7 @@ const Register = () => {
             Register
           </button>
         </form>
-        <div className="flex items-center pt-4 space-x-1">
-          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
-          <p className="px-3 text-sm dark:text-gray-400">
-            Login with social accounts
-          </p>
-          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
-        </div>
+
         <div className="flex justify-center space-x-4">
           <button aria-label="Log in with Google" className="p-3 rounded-sm">
             <svg
