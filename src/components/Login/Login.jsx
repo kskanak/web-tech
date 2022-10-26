@@ -1,12 +1,17 @@
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../router/AuthProvider";
 
 const Login = () => {
-  const { user, handleLogin, handleGooglesignIn } = useContext(AuthContext);
+  const { user, handleLogin, handleGooglesignIn, handleGithubsignIn } =
+    useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -18,7 +23,8 @@ const Login = () => {
     handleLogin(email, password)
       .then((result) => {
         const user = result.user;
-        toast.info("logged into your account");
+        toast.info("Logged into your account");
+        navigate(from, { replace: true });
         form.reset();
         console.log(user);
       })
@@ -29,9 +35,29 @@ const Login = () => {
   };
   //   handleGoogle
   const handleGoogleclick = () => {
-    handleGooglesignIn(googleProvider);
+    handleGooglesignIn(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        navigate(from, { replace: true });
+        toast.info("Logged in with Google ID");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
-
+  // handleGithub
+  const handleGithubclick = () => {
+    handleGithubsignIn(githubProvider)
+      .then((result) => {
+        const user = result.user;
+        navigate(from, { replace: true });
+        toast.info("Logged in with Github ID");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.message);
+      });
+  };
   return (
     <div className=" bg-slate-700 py-24 px-10 md:px-10">
       <div className=" md:w-2/5 mx-auto p-8 space-y-3 rounded-xl bg-gray-900 text-gray-100 ">
@@ -103,7 +129,11 @@ const Login = () => {
             </svg>
           </button>
 
-          <button aria-label="Log in with GitHub" className="p-3 rounded-sm">
+          <button
+            aria-label="Log in with GitHub"
+            className="p-3 rounded-sm"
+            onClick={handleGithubclick}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 32 32"

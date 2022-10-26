@@ -11,6 +11,7 @@ import Home from "../components/Home/Home";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import Main from "../layout/Main";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -55,7 +56,11 @@ export const router = createBrowserRouter([
             `https://web-tech-server-side.vercel.app/catagorydetails/${params.id}` ///2   http://localhost:5000/catagorydetails/${params.id}
           );
         },
-        element: <CheckoutPages></CheckoutPages>,
+        element: (
+          <PrivateRoutes>
+            <CheckoutPages></CheckoutPages>
+          </PrivateRoutes>
+        ),
       },
     ],
   },

@@ -1,12 +1,20 @@
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../router/AuthProvider";
 
 const Register = () => {
-  const { user, handleSignUp, updateUserProfile } = useContext(AuthContext);
+  const {
+    user,
+    handleSignUp,
+    updateUserProfile,
+    handleGooglesignIn,
+    handleGithubsignIn,
+  } = useContext(AuthContext);
   const [error, setError] = useState("");
-
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
   const [password, setPassword] = useState("");
 
   const handlePassword = (e) => {
@@ -55,6 +63,30 @@ const Register = () => {
       displayName: displayName,
     };
     updateUserProfile(profile);
+  };
+
+  //   handleGoogle
+  const handleGoogleclick = () => {
+    handleGooglesignIn(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        toast.info("logged in with Google ID");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+  // handleGithub
+  const handleGithubclick = () => {
+    handleGithubsignIn(githubProvider)
+      .then((result) => {
+        const user = result.user;
+        toast.info("logged in with Github ID");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.message);
+      });
   };
 
   return (
@@ -144,7 +176,11 @@ const Register = () => {
         </form>
 
         <div className="flex justify-center space-x-4">
-          <button aria-label="Log in with Google" className="p-3 rounded-sm">
+          <button
+            aria-label="Log in with Google"
+            className="p-3 rounded-sm"
+            onClick={handleGoogleclick}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 32 32"
@@ -154,7 +190,11 @@ const Register = () => {
             </svg>
           </button>
 
-          <button aria-label="Log in with GitHub" className="p-3 rounded-sm">
+          <button
+            aria-label="Log in with GitHub"
+            className="p-3 rounded-sm"
+            onClick={handleGithubclick}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 32 32"
