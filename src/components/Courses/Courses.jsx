@@ -25,7 +25,7 @@ const Courses = () => {
       <h2 className="text-4xl font-semibold text-white py-6 underline">
         Curruculam
       </h2>
-      <div className="curricula-body-container md:grid md:grid-cols-4 md:w-4/5 mx-auto ">
+      <div className="curricula-body-container md:grid md:grid-cols-4 px-10 md:px-16 ">
         <div className="course-list-container border-2 bg-slate-900 flex flex-col justify-center items-center w-full mt-5 mb-10 md:mb-0 md:mt-0 py-10">
           <h2 className="text-success text-3xl font-semibold flex justify-center mb-5">
             Course-List

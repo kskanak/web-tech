@@ -4,10 +4,13 @@ import CourseFee from "./CourseFee";
 
 const CheckoutPages = () => {
   const premiumDetails = useLoaderData();
-  const { id, img, title, about, details, points } = premiumDetails;
+  const { id, img, title, points } = premiumDetails;
 
   return (
-    <div>
+    <div className="bg-slate-800">
+      <p className="text-4xl text-bold underline text-emerald-600 pt-10">
+        {title}
+      </p>
       <div className="md:grid grid-cols-2 mx-auto bg-slate-800 px-10 md:px-16 py-12">
         {/* left */}
         <div className="left-side md:mt-12">
