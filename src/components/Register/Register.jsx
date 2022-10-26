@@ -2,6 +2,7 @@ import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../router/AuthProvider";
 
 const Register = () => {
@@ -50,7 +51,7 @@ const Register = () => {
         const user = result.user;
         setUserInfo(photoURL, displayName);
         handleEmailVarification();
-        toast.success("Account created Successfully");
+        Swal.fire("Congrats", "Successfully created account", "success");
         form.reset();
       })
       .catch((error) => {

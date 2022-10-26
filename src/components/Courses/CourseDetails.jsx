@@ -14,7 +14,7 @@ const CourseDetails = ({ courseDetails }) => {
               href="#"
               className="mb-0 capitalize dark:text-gray-100"
             >
-              Photography
+              Web-Tech
             </a>
           </div>
         </div>
