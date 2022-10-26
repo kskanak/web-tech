@@ -1,17 +1,23 @@
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../router/AuthProvider";
 
 const Login = () => {
-  const { user, handleLogin, handleGooglesignIn, handleGithubsignIn } =
-    useContext(AuthContext);
+  const {
+    user,
+    handleLogin,
+    handleGooglesignIn,
+    handleGithubsignIn,
+    passwordReset,
+  } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
+  const [passWordResetMail, setPasswordResetMail] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -58,6 +64,23 @@ const Login = () => {
         toast.error(error.message);
       });
   };
+  // handle email for password reset
+
+  const handleEmail = (e) => {
+    setPasswordResetMail(e.target.value);
+  };
+
+  // handle password reset
+  const handlePasswordReset = () => {
+    passwordReset(passWordResetMail)
+      .then((result) => {
+        setPasswordResetMail(" ");
+        toast.info("Password reset email sent, please check !");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
   return (
     <div className=" bg-slate-700 py-24 px-10 md:px-10">
       <div className=" md:w-2/5 mx-auto p-8 space-y-3 rounded-xl bg-gray-900 text-gray-100 ">
@@ -78,6 +101,7 @@ const Login = () => {
             <input
               type="email"
               name="email"
+              onChange={handleEmail}
               id="email"
               placeholder="email"
               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 text-gray-800 focus:dark:border-violet-400"
@@ -98,8 +122,13 @@ const Login = () => {
               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 text-gray-800 focus:dark:border-violet-400"
             />
             <div className="flex justify-end text-xs dark:text-gray-400">
-              <a rel="noopener noreferrer" href="#">
-                Forgot Password?
+              Forgot password ?
+              <a
+                className=" btn-link btn-sm cursor-pointer"
+                onClick={handlePasswordReset}
+              >
+                {" "}
+                reset
               </a>
             </div>
           </div>

@@ -3,6 +3,8 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -52,6 +54,18 @@ const AuthProvider = ({ children }) => {
     setLoader(true);
     return signInWithPopup(auth, githubProvider);
   };
+
+  //  passoword reset
+
+  const passwordReset = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  };
+
+  // email-varification
+
+  const emailvarification = () => {
+    return sendEmailVerification(auth.currentUser);
+  };
   // onauth change implement
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
@@ -71,6 +85,8 @@ const AuthProvider = ({ children }) => {
     handleGooglesignIn,
     handleGithubsignIn,
     loader,
+    passwordReset,
+    emailvarification,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

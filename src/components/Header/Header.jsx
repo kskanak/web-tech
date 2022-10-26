@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "../../assets/logo.png";
 import { AuthContext } from "../../router/AuthProvider";
+import { FaUser } from "react-icons/fa";
 
 const Header = () => {
   const { user, handleLogout } = useContext(AuthContext);
@@ -167,12 +168,14 @@ const Header = () => {
         </div>
         <div className="navbar-end">
           <div className="userInfo text-white">
-            {user && (
+            {user ? (
               <img
                 src={user.photoURL}
                 title={user.displayName}
                 className="h-8 w-8 rounded-full"
               />
+            ) : (
+              <FaUser />
             )}
           </div>
           {user && user?.uid ? (

@@ -11,6 +11,7 @@ const Register = () => {
     updateUserProfile,
     handleGooglesignIn,
     handleGithubsignIn,
+    emailvarification,
   } = useContext(AuthContext);
   const [error, setError] = useState("");
   const googleProvider = new GoogleAuthProvider();
@@ -48,6 +49,7 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         setUserInfo(photoURL, displayName);
+        handleEmailVarification();
         toast.success("Account created Successfully");
         form.reset();
       })
@@ -87,6 +89,14 @@ const Register = () => {
         console.log(error);
         toast.error(error.message);
       });
+  };
+
+  // handle email varification
+
+  const handleEmailVarification = () => {
+    emailvarification().then(() => {
+      toast.info("verification mail sent, please check your mail address");
+    });
   };
 
   return (

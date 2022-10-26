@@ -1,18 +1,26 @@
-# Getting Started with Create React App
+# Web-Tech
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Features of the website
 
-In the project directory, you can run:
+1. Responsive navigation
+2. Responsive Full Website
+3. login with social links
+4. Error messages shows
+5. Animation effect on hover
+6. single page application with dynamic routes and private routes
 
-### `npm start`
+### `Technologies and FrameWorks`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. React
+2. React-router
+3. Google-Firebase
+4. Tailwind CSS
+5. Daisy-Ui
+6. React-Toastify
+7. React-Icons
+8. Mamba UI kit
 
 ### `npm test`
 
