@@ -67,7 +67,7 @@ const Blog = () => {
           </article>
         </div>
         {/* blog  */}
-        <div className="max-w-md p-6 overflow-hidden rounded-lg shadow bg-gray-900 text-gray-100 hover:text-accent my-4 md:my-0">
+        <div className="max-w-md p-6 overflow-hidden rounded-lg shadow bg-gray-900 text-gray-100 hover:text-accent my-4 md:my-0 text-left">
           <article>
             <h2 className="text-xl font-bold">
               {" "}
