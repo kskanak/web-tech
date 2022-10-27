@@ -9,6 +9,8 @@ const CourseDetails = ({ courseDetails }) => {
   console.log(courseDetails);
   const options = {
     orientation: "portrait",
+    height: "100vh",
+    width: "100%",
   };
   return (
     <div>
@@ -22,18 +24,12 @@ const CourseDetails = ({ courseDetails }) => {
           )}
         </Pdf>
       </div>
-      <div className="details md:grid grid-cols-2 px-3" ref={ref}>
+      <div className="details md:grid grid-cols-2 md:px-3" ref={ref}>
         <div className="div">
-          <div className="max-w-lg p-4 shadow-md bg-gray-900 text-gray-100">
+          <div className="max-w-lg p-2 md:p-4 shadow-md bg-gray-900 text-gray-100">
             <div className="flex justify-between pb-4 border-bottom">
               <div className="flex items-center">
-                <a
-                  rel="noopener noreferrer"
-                  href="#"
-                  className="mb-0 capitalize dark:text-gray-100"
-                >
-                  Web-Tech
-                </a>
+                <a className="mb-0 capitalize dark:text-gray-100">Web-Tech</a>
               </div>
             </div>
             <div className="space-y-4">
@@ -41,7 +37,7 @@ const CourseDetails = ({ courseDetails }) => {
                 <img
                   src={img}
                   alt=""
-                  className="block object-cover object-center w-full rounded-md h-72 bg-gray-500"
+                  className="block md:object-cover object-fit w-fit rounded-md h-72 bg-gray-500"
                 />
               </div>
               <div className="space-y-2">

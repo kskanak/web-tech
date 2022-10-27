@@ -40,7 +40,7 @@ const Courses = () => {
             ))}
           </div>
         </div>
-        <div className="course-details col-span-3 border-2 flex justify-center items-center py-10 px-5 md:px-0">
+        <div className="course-details col-span-3 border-2 flex justify-center items-center py-10 md:px-5 md:px-0">
           {courseDetails ? (
             <CourseDetails courseDetails={courseDetails}></CourseDetails>
           ) : (

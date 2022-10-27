@@ -193,7 +193,7 @@ const Header = () => {
                 </button>
               </Link>
               <Link to="/login">
-                <button className="btn btn-outline btn-accent btn-sm">
+                <button className="btn btn-outline btn-accent btn-sm mt-2 md:mt-0">
                   Login
                 </button>
               </Link>
