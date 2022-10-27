@@ -166,7 +166,7 @@ const Header = () => {
             </label>
           </div>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end flex">
           <div className="userInfo text-white">
             {user ? (
               <img
@@ -187,13 +187,8 @@ const Header = () => {
             </button>
           ) : (
             <div className="login-regis-btn">
-              <Link to="/register">
-                <button className="btn btn-outline btn-accent btn-sm mx-2">
-                  Registration
-                </button>
-              </Link>
               <Link to="/login">
-                <button className="btn btn-outline btn-accent btn-sm mt-2 md:mt-0">
+                <button className="btn btn-outline btn-accent btn-sm ml-3">
                   Login
                 </button>
               </Link>
